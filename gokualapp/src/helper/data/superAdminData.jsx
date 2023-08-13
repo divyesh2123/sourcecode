@@ -62,6 +62,16 @@ const modules = [
       imageSrc: require("../../Theme/assets/images/icons/MANAGE PRODUCT.png"),
     },
   ];
+
+  export const ItemTypeGroup = [
+    {
+      options: [
+        { label: "Standard", value: "1" },
+        { label: "Multi-Pack", value: "2" },
+      ],
+    },
+  ];
+
   
   export default modules;
   

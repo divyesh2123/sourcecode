@@ -17,6 +17,7 @@ import {
 } from "reactstrap";
 import { productListRequest } from "../../redux/product/action";
 import ProductList from "../../components/product/ProductList";
+import AddProductForm from "../../components/product/AddProduct";
 
 
 // import upctabelRequest from "../API/ListUpc/action";
@@ -26,7 +27,7 @@ const ManageProduct = (props) => {
   const [disableButton,setdisableButton] = useState(false);
   const [editID, setEditID] = useState(null);
   const productList = useSelector((state) => state.productReducer);
-  
+  const [openModel,setOpenModel] = useState(false);
 
   useEffect(() => {
       if (productList.productData === null && productList.error === null && 
@@ -37,6 +38,15 @@ const ManageProduct = (props) => {
     }, [productList]);
   
   
+    const handlecloseModel =()=> {
+
+      setOpenModel(false);
+  }
+
+  const handleopeModel =()=> {
+
+      setOpenModel(true);
+  }
   
   
   const columns = useMemo(
@@ -119,21 +129,19 @@ const ManageProduct = (props) => {
           <div className="row">
             <div className="flex-shrink-0">
               <div className="d-flex gap-2 flex-wrap">
-                <Link
-                  to="/AddProductInformation"
-                  style={{ textDecoration: "none" }}
-                >
+               
                   <button
                     className="col btn custom-Green text-nowrap"
                     //  data-bs-toggle = "modal"
                     style={{ width: "130px" }}
                     onClick={() => {
                         setEditID(null);
+                        setOpenModel(true);
                     }}
                   >
                     Add New
                   </button>
-                </Link>
+                
 
                 <button
                   className="col btn custom-Blue text-nowrap w-50"
@@ -260,6 +268,17 @@ const ManageProduct = (props) => {
         
         </div>
       </div>
+
+      <div className="card-body">
+                        <div className="row mb-0">
+                            <AddProductForm
+                                editID={editID}
+                                setEditID={setEditID}
+                                show={openModel}
+                                handlecloseModel={handlecloseModel}
+                            ></AddProductForm>
+                        </div>
+                    </div>
       
     </React.Fragment>
   );

@@ -1,12 +1,51 @@
 import React, { useState, useEffect } from "react";
 import { productField, productValidation } from "../../enhancer/product/productfields";
+import { Formik, useFormik } from "formik";
+import { useDispatch } from "react-redux";
+import { Col, Form, FormFeedback, FormGroup, Input, Label, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
+import { Select } from "@mantine/core";
+import Cleave from "cleave.js/react";
+import { ItemTypeGroup } from "../../helper/data/superAdminData";
 
+const AddProductForm = (props) => {
 
-const AddDepartmentForm = (props) => {
+  const dispatch = useDispatch();
+  const [departmentDrop, setDepartmentdrop] = useState([]);
+  const [categoryDrop, setCategorydrop] = useState([]);
+  const [subCategoryDrop, setSubCategorydrop] = useState([]);
+  const [typeDrop, setTypedrop] = useState([]);
+  const [sizeDrop, setSizedrop] = useState([]);
+  const [packDrop, setPackdrop] = useState([]);
+  const [taxDrop, setTaxdrop] = useState([]);
+  const [unitPTable, setUnitPTable] = useState([]);
+  const [barcodeData, setBarcodeData] = useState([]);
+  const [sortBySize, setsortBySize] = useState(null);
+  const [sortByPack, setsortByPack] = useState(null);
+  const [sortByTax, setsortByTax] = useState(null);
+  const [sortByCategory, setsortByCategory] = useState(null);
+  const [sortBySubCategory, setsortBySubCategory] = useState(null);
+  const [sortByItemType, setsortByItemType] = useState(0);
+  const [sortByDepartment, setsortByDepartment] = useState(null);
+  const [itemMap, setItemMap] = useState([]);
+  const [itemIndex, setItemIndex] = useState(0);
+  const [itemStock, setItemStock] = useState([]);
+  const [updatedStockData, setUpdatedStockData] = useState([]);
+  const [costPrice, setCostPrice] = useState(`0.00`);
+  const [inputs, setInputs] = useState({});
+  const [inputName, setInputName] = useState("default");
+  const [margin, setMargin] = useState(`0.00`);
+  const [markup, setMarkup] = useState(`0.00`);
+  const [sellingPrice, setSellingPrice] = useState(`0.00`);
+  const [minPrice, setMinPrice] = useState(`0.00`);
+  const [SalesPrice, setSalesPrice] = useState(`0.00`);
+  const [msrp, setMsrp] = useState(`0.00`);
+  const [buyDown, setBuyDown] = useState("0.00");
+  const [unitInCase, setUnitInCase] = useState("");
+  const [casecost, setCasecost] = useState("");
+  const [caseprice, setCasePrice] = useState("");
+ 
 
-
-
-  const validation = useFormik({
+  const formik = useFormik({
     enableReinitialize: true,
     initialValues: productField,
     validationSchema: productValidation,
@@ -15,42 +54,126 @@ const AddDepartmentForm = (props) => {
     },
   });
 
+  const handleCostPriceChange = (event) => {
 
-  
+  }
 
+  function onMinPriceChange(e) {
 
+  }
 
+  function onCasePriceChange(e) {
+    
+  }
 
-  const productSubmit = (values) => {
-
-
-    if (props.editID != null) {
-
-      dispatch(
-        departmentUpdateRequest(
-          formatBodyDepartment(values, sortByBrand, sortBy,props.editID)
-  
-        )
-      );
-
-    }
-    else
-    {
-    dispatch(
-      departmentdAddRequest(
-        formatBodyDepartment(values, sortByBrand, sortBy)
-
-      )
-    );
-
-    }
+  const DeleteIteM = (id) => {
    
-    validation.resetForm();
-    setsortByBrand(null);
-    setsortBy(null);
-    props.setEditID(null)
+  };
+
+  function onBuyDownChange(e) {
+
+  }
+
+  const handleCheckboxChange = (event) => {
+
+  }
+
+  function onCaseCostChange(e) {
+
+  }
+
+  function onUnitInCaseChange(e) {
+
+  }
+
+  const handleInputChange = (e) => {
+
+  }
+
+  const handleAddOrUpdateTable = () => {
+
+  }
+
+  function onMsrpChange(e) {
+
+  }
+
+  function onSalesPriceChange(e) {
+
+  }
+
+  const handleMarkupChange = (event) => {
+
+  }
+
+  const handleSellingPriceChange = (event) => {
+  }
+
+  const handleMarginChange = (event) => {
+
+  }
+
+  const handleAddOrUpdateTableMargin = async (e) => {
+
+  }
+
+  
+  const handleDepartmentChange = (e) => {
+    console.log(e);
+    setsortByDepartment(e);
+  };
+
+  
+
+  const handleKeyDown = (event) => {
+    
+  };
+
+  const handleTaxChange = (e) => {
+   
+    setsortByTax(e);
+  };
+
+  const handleChangeTab = (i) => {
+  
+  };
+
+  const handleSizeChange = (e) => {
+    console.log(e);
+    setsortBySize(e);
+  };
+
+  const handlePackChange = (e) => {
+    console.log(e);
+    setsortByPack(e);
+  };
+
+  
+
+  const handleCategoryChange = (e) => {
+    console.log(e.value);
+    setsortByCategory(e);
+   
+  };
+  const handleSubCategoryChange = (e) => {
+    console.log(e);
+    setsortBySubCategory(e);
+  };
+
+  const handleItemTypeChange = (e) => {
+    console.log(e);
+    setsortByItemType(e);
+  };
+
+
+  const productSubmit = (values) => { 
+   formik.resetForm();
     props.handlecloseModel();
   };
+
+  const handleAddNew = () => {
+
+  }
   
 
   return (
@@ -79,7 +202,7 @@ const AddDepartmentForm = (props) => {
             <Form
               className="tablelist-form needs-validation"
               autoComplete="off"
-              onSubmit={handleSubmit}
+              onSubmit={productSubmit}
             >
               <div className="card-header p-2 custom-Blue align-middle d-flex justify-content-between">
                 <h5 className="text-light align-middle mt-2">
@@ -95,7 +218,16 @@ const AddDepartmentForm = (props) => {
                   </button>
                   <button
                     className="btn custom-Red btn-exit"
-                    onClick={() => navigate("/ManageProductList")}
+                    onClick={() => 
+                      {
+                      props.setEditID(null)
+                      formik.resetForm();
+                    
+                      props.handlecloseModel();
+
+                      }
+                    
+                    }
                   >
                     Exit
                   </button>
@@ -209,8 +341,8 @@ const AddDepartmentForm = (props) => {
                           Add
                         </a>
 
-                        <AddDepartmentInfo {...props} tag={true} />
-                        <EditDepartMent {...props} tag={true} />
+                        {/* <AddDepartmentInfo {...props} tag={true} /> */}
+                        {/* <EditDepartMent {...props} tag={true} /> */}
                         <Select
                           value={sortByDepartment}
                           onBlur={formik.handleBlur}
@@ -856,7 +988,7 @@ const AddDepartmentForm = (props) => {
                                     overflowY: "Scroll",
                                   }}
                                 >
-                                  {barcodeData.map((elem, ind) => {
+                                  {barcodeData?.map((elem, ind) => {
                                     return (
                                       <div
                                         className="btn btn-sm bg-primary-subtle mx-2 my-1"
@@ -952,14 +1084,14 @@ const AddDepartmentForm = (props) => {
                           </Col>
                         </Row>
 
-                        <StockComponent
+                        {/* <StockComponent
                           setnStockData={setnStockData}
                           stockData={stockData}
                           nStockData={nStockData}
                           setStockData={setStockData}
                           setUpdatedStockData={setUpdatedStockData}
                           updatedStockData={updatedStockData}
-                        />
+                        /> */}
                         <Row className="mt-2">
                           <Col>
                             <FormGroup>
@@ -1444,6 +1576,8 @@ const AddDepartmentForm = (props) => {
             </Form>
           </Formik>
         </div>
+
+
       </div>
       
     </React.Fragment>
