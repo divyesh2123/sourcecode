@@ -1,0 +1,145 @@
+.bgGrad {
+    background: rgb(27, 39, 82);
+    background-image: url("../../../Theme/assets/images/POS/Asset\ 1-8\ \(2\).png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-size: 100%;
+    position: absolute;
+    top: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  body {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .bg {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+  }
+  
+  #MainBanner {
+    position: relative;
+    margin-top: 20vh;
+    left: 0em;
+  }
+  
+  #BackgroundGrad {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  img#LogoImage {
+    position: relative;
+    float: right;
+    color: #fff;
+    filter: brightness(0) invert(1);
+  }
+  
+  .containerForm {
+    width: auto;
+    margin-top: 30vh;
+    transform: translateY(-7vh);
+  }
+  
+  .parDiv{
+    max-height: 50vh !important;
+  }
+  
+  .BackCont {
+    position: absolute;
+    border-radius: 0 100px;
+    top: 7vh;
+    left: 5vw;
+    width: 90vw;
+    height: 86vh;
+    background: #ffffff05 !important;
+    background-blend-mode: darken;
+    z-index: 0;
+    overflow-x: hidden;
+    box-shadow: 1px 1px 200px #0000005b;
+  }
+  
+  .FormIn {
+    position: relative !important;
+    background: #fff;
+  }
+  
+  .RememberIn {
+    margin-left: 3rem;
+    font-size: 12px;
+    position: relative;
+  }
+  
+  input.RememberIn {
+    background: #fff;
+    color: #fff;
+    position: relative;
+    z-index: 4;
+  }
+  
+  .btnLI {
+    position: relative;
+    text-decoration: none;
+    background: #f14295;
+    padding: 10px 40px;
+    color: white;
+    font-weight: 100;
+    margin-left: 3rem;
+  }
+  
+  .btnSU {
+    position: relative;
+    text-decoration: none;
+    background: transparent;
+    padding: 6px 50px;
+    color: white;
+    font-weight: 100;
+    margin-left: 3rem;
+  }
+  
+  .btnLI:hover {
+    position: relative;
+    text-decoration: none;
+    background: #f14295;
+    color: white;
+    font-weight: 100;
+    margin-left: 3rem;
+    box-shadow: 1px 1px 20px #f14295;
+  }
+  
+  .btnSU:hover {
+    text-decoration: none;
+    border: 1px solid #fff;
+    color: white;
+    font-weight: 100;
+  }
+  
+  i > img {
+    margin-top: -4px !important;
+  }
+  
+  @media only screen and (min-width: 800px) {
+    #MainBanner {
+        position: relative;
+        margin-top: 16vh;
+        left: 0em;
+      }
+  }
+  
+  @media only screen and (min-width: 1000px) {
+    #MainBanner {
+        position: relative;
+        margin-top: 9vh;
+        left: 0em;
+      }
+  }

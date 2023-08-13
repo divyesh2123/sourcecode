@@ -1,0 +1,99 @@
+.pull-right {
+  float: right;
+}
+
+.pull-left {
+  float: left;
+}
+
+/* .right-breadcum li {
+    display: inline-block;
+}
+
+    .right-breadcum li + li {
+        padding-left: 5px;
+    }
+
+    .right-breadcum li p i {
+        padding-right: 5px;
+    }
+
+.right-breadcum {
+    margin-bottom: 0;
+}
+*/
+.input-group-text {
+  padding: 0.2rem 0.4rem;
+}
+
+/*  .ri {
+    font-size: 11px !important;
+    font-weight: 400 !important;
+}*/
+
+.head {
+  background-color: #f7d8ba;
+  max-height: 30px !important;
+}
+
+.cart-item-table {
+  height: 360px;
+  overflow-y: auto;
+  display: grid;
+}
+
+.netpay-tbl {
+  align-self: center;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* .txttotal {
+    color: #000;
+    font-weight: 600;
+    font-size: 14px;
+} */
+
+/* .p{
+        background-color: #b0efcc !important;
+    }
+    .p1{
+        background-color: #efb0b0 !important;
+    }*/
+#order-item-tbl thead {
+  background: #fff;
+  color: #fff;
+}
+#order-item-tbl tbody {
+  background: #ffffff !important;
+}
+#order-item-tbl .text-left {
+  text-align: left;
+}
+#order-item-tbl .text-right {
+  text-align: right;
+}
+.cart-right-side {
+  display: flex;
+}
+.cart-item-group {
+  width: 100%;
+}
+.qty span {
+  display: block;
+  background: #405189;
+  color: #ffffff;
+  padding: 2px 4px;
+}
+.netpay span {
+  display: block;
+  background: #0ab39c;
+  color: #fff;
+  padding: 2px 4px;
+}
+.due span {
+  display: block;
+  background: #f06548;
+  color: #ffffff;
+  padding: 2px 4px;
+}
