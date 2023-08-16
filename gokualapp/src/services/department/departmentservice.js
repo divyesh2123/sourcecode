@@ -38,4 +38,11 @@ export async function getDepartmentDetail(id) {
     return await department;
 }
 
+export async function getDepartmentDropDownData() {
+    const department = authFetch.get(
+        `${url.dropDownDepartment}`,
+    );
+    return await department;
+}
+
 

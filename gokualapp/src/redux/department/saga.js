@@ -14,10 +14,12 @@ import {
     getDetailDepartmentSucess,
     getDetailDepartmentFailure,
     clearGetDepartmentDataById,
+    departmentDropdownSuccess,
+    departmentDropdownFailure,
 
 } from "./actions";
 import axios from "axios";
-import { addDepartmentService, delDepartment, departmentList, editDepartment, getDepartmentDetail } from "../../services/department/departmentservice";
+import { addDepartmentService, delDepartment, departmentList, editDepartment, getDepartmentDetail, getDepartmentDropDownData } from "../../services/department/departmentservice";
 
 
 function* departmentListSaga(action) {
@@ -123,6 +125,15 @@ function* getDepartmentDetailSaga(action) {
     }
 }
 
+function* getDepartmentDropDownSaga() {
+    try {
+        const getDepartmentData = yield call(getDepartmentDropDownData);
+        yield put(departmentDropdownSuccess(getDepartmentData.data));
+    } catch (e) {
+        yield put(departmentDropdownFailure(e.message));
+    }
+}
+
 function* watchDepartmentList() {
     yield takeLatest("DEPARTMENT_LIST_REQUEST", departmentListSaga);
 }
@@ -144,6 +155,11 @@ function* watchGetDetailDepartment() {
     yield takeEvery("DEPARTMENT_DETAILSBYID_REQUEST", getDepartmentDetailSaga);
 }
 
+function* watchDepartmentDropDown() {
+  
+    yield takeEvery("DEPARTMENT_DD_REQUEST", getDepartmentDropDownSaga);
+}
+
 
 export default function* departmentRootSaga() {
     yield all([
@@ -151,7 +167,8 @@ export default function* departmentRootSaga() {
         watchAddDepartment(),
         watchDelDepartment(),
         watchUpdateDepartment(),
-        watchGetDetailDepartment()
+        watchGetDetailDepartment(),
+        watchDepartmentDropDown()
 
     ]);
 }

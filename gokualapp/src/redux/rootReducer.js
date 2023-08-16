@@ -9,6 +9,7 @@ import { subCategoryReducer } from "./subcategory/reducer";
 import { sizeReducer } from "./size/reducer";
 import { packReducer } from "./pack/reducer";
 import { itemTypeReducer } from "./itemtype/reducer";
+import { categoryReducer } from "./category/reducer";
 
 const rootReducer = combineReducers({
     userReducer: userReducer,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
     subCategoryReducer: subCategoryReducer,
     sizeReducer : sizeReducer,
     packReducer: packReducer,
-    itemType: itemTypeReducer
+    itemType: itemTypeReducer,
+    cateogry:categoryReducer
  });
 
 export default rootReducer;

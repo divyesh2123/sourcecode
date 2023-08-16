@@ -1,4 +1,4 @@
-import { CLEAR_DEPARTMENT_ADD_DATA, CLEAR_DEPARTMENT_DEL_DATA, CLEAR_DEPARTMENT_DETAILSBYID_DATA, CLEAR_DEPARTMENT_LIST_DATA, CLEAR_DEPARTMENT_UPDATE_DATA, DEPARTMENT_ADD_FAILURE, DEPARTMENT_ADD_SUCCESS, DEPARTMENT_DEL_FAILURE, DEPARTMENT_DEL_SUCCESS, DEPARTMENT_DETAILSBYID_FAILURE, DEPARTMENT_DETAILSBYID_SUCESS, DEPARTMENT_LIST_FAILURE, DEPARTMENT_LIST_REQUEST, DEPARTMENT_LIST_SUCCESS, DEPARTMENT_UPDATE_FAILURE, DEPARTMENT_UPDATE_SUCCESS } from "../../helper/constants/department/departmentconstant";
+import { CLEAR_DEPARTMENT_ADD_DATA, CLEAR_DEPARTMENT_DEL_DATA, CLEAR_DEPARTMENT_DETAILSBYID_DATA, CLEAR_DEPARTMENT_LIST_DATA, CLEAR_DEPARTMENT_UPDATE_DATA, DEPARTMENT_ADD_FAILURE, DEPARTMENT_ADD_SUCCESS, DEPARTMENT_DD_FAILURE, DEPARTMENT_DD_SUCCESS, DEPARTMENT_DEL_FAILURE, DEPARTMENT_DEL_SUCCESS, DEPARTMENT_DETAILSBYID_FAILURE, DEPARTMENT_DETAILSBYID_SUCESS, DEPARTMENT_LIST_FAILURE, DEPARTMENT_LIST_REQUEST, DEPARTMENT_LIST_SUCCESS, DEPARTMENT_UPDATE_FAILURE, DEPARTMENT_UPDATE_SUCCESS } from "../../helper/constants/department/departmentconstant";
 
 const DepartmentInitialState = {
     departmentData: null,
@@ -7,6 +7,7 @@ const DepartmentInitialState = {
     updateDepartmentData: null,
     addDepartmentData: null,
     getDepartmentDetailsData: null,
+    DepartmentDdState: null,
     error: null,
 };
 
@@ -16,6 +17,22 @@ export const departmentReducer = (
     action
 ) => {
     switch (action.type) {
+
+        case DEPARTMENT_DD_SUCCESS:
+
+        return {
+            ...state,
+            DepartmentDdState: action.payload,
+            error: null,
+        };
+
+        case DEPARTMENT_DD_FAILURE:
+      return {
+        ...state,
+        DepartmentDdState: null,
+        error: action.payload,
+      };
+
 
         case DEPARTMENT_LIST_REQUEST:
             return {

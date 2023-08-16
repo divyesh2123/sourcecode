@@ -6,17 +6,17 @@ import { Col, Form, FormFeedback, FormGroup, Input, Label, Modal, ModalBody, Mod
 import { Select } from "@mantine/core";
 import Cleave from "cleave.js/react";
 import { ItemTypeGroup } from "../../helper/data/superAdminData";
+import { BrandDropdownRequest } from "../../redux/brand/action";
+import { departmentDropdownRequest } from "../../redux/department/actions";
+import { sizeDropdownRequest } from "../../redux/size/action";
+import { packDropdownRequest } from "../../redux/pack/action";
+import { itemTypeDropdownRequest } from "../../redux/itemtype/action";
+import { categoryDropdownRequest } from "../../redux/category/action";
 
 const AddProductForm = (props) => {
 
   const dispatch = useDispatch();
-  const [departmentDrop, setDepartmentdrop] = useState([]);
-  const [categoryDrop, setCategorydrop] = useState([]);
-  const [subCategoryDrop, setSubCategorydrop] = useState([]);
-  const [typeDrop, setTypedrop] = useState([]);
-  const [sizeDrop, setSizedrop] = useState([]);
-  const [packDrop, setPackdrop] = useState([]);
-  const [taxDrop, setTaxdrop] = useState([]);
+ 
   const [unitPTable, setUnitPTable] = useState([]);
   const [barcodeData, setBarcodeData] = useState([]);
   const [sortBySize, setsortBySize] = useState(null);
@@ -44,8 +44,16 @@ const AddProductForm = (props) => {
   const [casecost, setCasecost] = useState("");
   const [caseprice, setCasePrice] = useState("");
 
-  const brandDropDownList = useSelector((state) => state?.brand);
 
+  const taxDropDownList = useSelector((state) => state?.taxReducer);
+  const brandDropDownList = useSelector((state) => state?.brand);
+  const departmentDropDownList = useSelector((state) => state?.departmentReducer);
+  const sizeDropDownList = useSelector((state) => state?.sizeReducer);
+  const packDropDownList = useSelector((state) => state?.packReducer);
+  const itemTypeDropDownList = useSelector((state) => state?.itemTypeReducer);
+  const categoryDownList = useSelector((state) => state?.categoryReducer);
+  const subCategoryDownList = useSelector((state) => state?.subCategoryReducer);
+ 
  
 
   const formik = useFormik({
@@ -62,10 +70,61 @@ const AddProductForm = (props) => {
     if (taxDropDownList.taxDropDownData === null && taxDropDownList.error === null) {
       dispatch(TaxDropdownRequest());
     }
+    if (
+      brandDropDownList.brandDropDownData === null &&
+      brandDropDownList.error === null
+    ) {
+
+      dispatch(BrandDropdownRequest());
+    }
+
+    if (
+      departmentDropDownList.DepartmentDdState === null &&
+      departmentDropDownList.error === null
+    ) {
+
+      dispatch(departmentDropdownRequest());
+    }
+
+    if (
+      sizeDropDownList.SizeDdState === null &&
+      sizeDropDownList.error === null
+    ) {
+
+      dispatch(sizeDropdownRequest());
+    }
+
+    if (
+      packDropDownList.PackDdState === null &&
+      packDropDownList.error === null
+    ) {
+
+      dispatch(packDropdownRequest());
+    }
+
+    if (
+      itemTypeDropDownList.ItemTypeDdState === null &&
+      itemTypeDropDownList.error === null
+    ) {
+
+      dispatch(itemTypeDropdownRequest());
+    }
+
+    if (
+      categoryDownList.CategoryDdState === null &&
+      categoryDownList.error === null
+    ) {
+
+      dispatch(categoryDropdownRequest());
+    }
+
+   
 
 
 
-  })
+  }, [taxDropDownList, brandDropDownList,
+    departmentDropDownList,sizeDropDownList,
+    packDropDownList,itemTypeDropDownList,categoryDownList])
 
   const handleCostPriceChange = (event) => {
 
@@ -598,34 +657,10 @@ const AddProductForm = (props) => {
                             </li>
                           );
                         })}
-                      {/* <li className="nav-item mb-0">
-                        <a
-                          className="nav-link active"
-                          data-bs-toggle="tab"
-                          href="#addproduct-general-info"
-                          role="tab"
-                        >
-                          Cost & Price
-                        </a>
-                      </li> */}
-                      {/* <li className="nav-item">
-                        <a
-                          className="nav-link"
-                          data-bs-toggle="tab"
-                          href="#addproduct-metadata"
-                          role="tab"
-                          value={MiscSoldAlong}
-                          id="MiscSoldAlong"
-                          keyboardType="decimal-pad"
-                          onChange={(e) => onMiscSoldAlongChange(e)}
-                          disabled={!formik.values.IsMiscSoldAllowed}
-                        >
-                          Misc Sold Along
-                        </a>
-                      </li> */}
+                     
                     </ul>
                   </div>
-                  {/* end card header */}
+                 
                   <div className="p-3">
                     <div className="tab-content">
                       <div

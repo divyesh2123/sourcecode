@@ -19,6 +19,8 @@ export default {
                 return `${process.env.REACT_APP_PRODUCT_API_URL}/api/department/update/${Id}`
         },
 
+        dropDownDepartment : `${process.env.REACT_APP_PRODUCT_API_URL}/api/department/dropdown/1`,
+
         getBrand : `${process.env.REACT_APP_PRODUCT_API_URL}/api/brand/dropdown/1`,
         getTax :  `${process.env.REACT_APP_PRODUCT_API_URL}/api/group/dropdown/tax/1`,
         getProductList : `${process.env.REACT_APP_PRODUCT_API_URL}/api/item/1`,
@@ -31,7 +33,9 @@ export default {
         
         getPack:  `${process.env.REACT_APP_PRODUCT_API_URL}/api/specification/dropdown/pack/1`,
 
-        itemType: `${process.env.REACT_APP_PRODUCT_API_URL}/api/specificationtype/dropdown/1`
+        itemType: `${process.env.REACT_APP_PRODUCT_API_URL}/api/specificationtype/dropdown/1`,
+
+        categoryUrl:  `${process.env.REACT_APP_PRODUCT_API_URL}/api/category/dropdown/1`
 
 
 }

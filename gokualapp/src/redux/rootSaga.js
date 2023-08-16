@@ -9,6 +9,7 @@ import subCategoryRootSaga from "./subcategory/saga";
 import sizeRootSaga from "./size/saga";
 import packRootSaga from "./pack/saga";
 import itemTypeRootSaga from "./itemtype/saga";
+import CategoryRootSaga from "./category/saga";
 
 export default function* rootSaga() {
     yield all([watchLogin(), 
@@ -20,7 +21,8 @@ export default function* rootSaga() {
       subCategoryRootSaga(),
       sizeRootSaga(),
       packRootSaga(),
-      itemTypeRootSaga()
+      itemTypeRootSaga(),
+      CategoryRootSaga()
     
     
     ]);
