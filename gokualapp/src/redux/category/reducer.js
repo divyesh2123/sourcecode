@@ -1,5 +1,5 @@
 import { CATEGORY_DD_FAILURE, CATEGORY_DD_SUCCESS } from "../../helper/constants/category/categoryconstants";
-import { SIZE_DD_FAILURE, SIZE_DD_SUCCESS } from "../../helper/constants/size/sizecostant";
+
 
 const categoryInitialState = {
     CategoryDdState: null,

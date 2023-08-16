@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { productField, productValidation } from "../../enhancer/product/productfields";
 import { Formik, useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Col, Form, FormFeedback, FormGroup, Input, Label, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
 import { Select } from "@mantine/core";
 import Cleave from "cleave.js/react";
@@ -12,6 +12,8 @@ import { sizeDropdownRequest } from "../../redux/size/action";
 import { packDropdownRequest } from "../../redux/pack/action";
 import { itemTypeDropdownRequest } from "../../redux/itemtype/action";
 import { categoryDropdownRequest } from "../../redux/category/action";
+import { SubCategoryDdRequest } from "../../redux/subcategory/action";
+import { TaxDropdownRequest } from "../../redux/tax/actions";
 
 const AddProductForm = (props) => {
 
@@ -118,13 +120,21 @@ const AddProductForm = (props) => {
       dispatch(categoryDropdownRequest());
     }
 
+    if (
+      subCategoryDownList.SubCatDrop === null &&
+      subCategoryDownList.error === null
+    ) {
+
+      dispatch(SubCategoryDdRequest());
+    }
+
    
 
 
 
   }, [taxDropDownList, brandDropDownList,
     departmentDropDownList,sizeDropDownList,
-    packDropDownList,itemTypeDropDownList,categoryDownList])
+    packDropDownList,itemTypeDropDownList,categoryDownList,subCategoryDownList])
 
   const handleCostPriceChange = (event) => {
 
@@ -369,7 +379,9 @@ const AddProductForm = (props) => {
                           type="text"
                           className="js-example-basic-single mb-0 text-dark "
                           id="Tax"
-                          options={taxDrop}
+                          options={ taxDropDownList?.taxDropDownData?.listResult === null
+                            ? ""
+                            : taxDropDownList?.taxDropDownData?.listResult}
                           onChange={(e) => {
                             handleTaxChange(e);
                           }}
@@ -423,7 +435,9 @@ const AddProductForm = (props) => {
                             handleDepartmentChange(e);
                             // formik.handleChange("department1");
                           }}
-                          options={departmentDrop}
+                          options={ departmentDropDownList?.DepartmentDdState?.listResult === null
+                            ? ""
+                            : departmentDropDownList?.DepartmentDdState?.listResult}
                           id="department1"
                           className="js-example-basic-single mb-0 text-dark "
                           name="department1"
@@ -453,7 +467,9 @@ const AddProductForm = (props) => {
                             handleCategoryChange(e);
                             formik.handleChange("category");
                           }}
-                          options={categoryDrop}
+                          options={ categoryDownList?.CategoryDdState?.listResult === null
+                            ? ""
+                            : categoryDownList?.CategoryDdState?.listResult}
                           id="category"
                           className="js-example-basic-single mb-0 text-dark "
                           name="category"
@@ -485,7 +501,9 @@ const AddProductForm = (props) => {
                             handleSubCategoryChange(e);
                             formik.handleChange("subCategory");
                           }}
-                          options={subCategoryDrop}
+                          options={ subCategoryDownList.SubCatDrop?.listResult === null
+                            ? ""
+                            : subCategoryDownList.SubCatDrop?.listResult}
                           id="subCategory"
                           className="js-example-basic-single mb-0 text-dark "
                           name="subCategory"
@@ -507,7 +525,9 @@ const AddProductForm = (props) => {
                             handleItemTypeChange(e);
                             formik.handleChange("itemType");
                           }}
-                          options={ItemTypeGroup}
+                          options={ itemTypeDropDownList?.ItemTypeDdState?.listResult === null
+                            ? ""
+                            : categoryDownList?.ItemTypeDdState?.listResult}
                           id="itemType"
                           className="js-example-basic-single mb-0 text-dark "
                           name="itemType"
@@ -530,7 +550,9 @@ const AddProductForm = (props) => {
                             handleSizeChange(e);
                             formik.handleChange("size");
                           }}
-                          options={sizeDrop}
+                          options={ sizeDropDownList?.SizeDdState?.listResult === null
+                            ? ""
+                            : sizeDropDownList?.SizeDdState?.listResult}
                           id="size"
                           className="js-example-basic-single mb-0 text-dark "
                           name="size"
@@ -560,7 +582,9 @@ const AddProductForm = (props) => {
                             handlePackChange(e);
                             formik.handleChange("pack");
                           }}
-                          options={packDrop}
+                          options={ packDropDownList?.PackDdState?.listResult === null
+                            ? ""
+                            : packDropDownList?.PackDdState?.listResult}
                           id="pack"
                           className="js-example-basic-single mb-0 text-dark "
                           name="pack"
