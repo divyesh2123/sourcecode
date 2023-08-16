@@ -21,7 +21,11 @@ export default {
 
         getBrand : `${process.env.REACT_APP_PRODUCT_API_URL}/api/brand/dropdown/1`,
         getTax :  `${process.env.REACT_APP_PRODUCT_API_URL}/api/group/dropdown/tax/1`,
-        getProductList : `${process.env.REACT_APP_PRODUCT_API_URL}/api/item/1`
+        getProductList : `${process.env.REACT_APP_PRODUCT_API_URL}/api/item/1`,
+        getSubCategory :(category) => {
+
+                return `${process.env.REACT_APP_PRODUCT_API_URL}/api/category/dropdown/subcategory/1/${category}`
+        },
 
 
 }

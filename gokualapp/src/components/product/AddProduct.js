@@ -43,6 +43,9 @@ const AddProductForm = (props) => {
   const [unitInCase, setUnitInCase] = useState("");
   const [casecost, setCasecost] = useState("");
   const [caseprice, setCasePrice] = useState("");
+
+  const brandDropDownList = useSelector((state) => state?.brand);
+
  
 
   const formik = useFormik({
@@ -53,6 +56,16 @@ const AddProductForm = (props) => {
         productSubmit(values);
     },
   });
+
+  useEffect(()=> {
+
+    if (taxDropDownList.taxDropDownData === null && taxDropDownList.error === null) {
+      dispatch(TaxDropdownRequest());
+    }
+
+
+
+  })
 
   const handleCostPriceChange = (event) => {
 
@@ -426,14 +439,7 @@ const AddProductForm = (props) => {
                           Item Type
                         </label>
 
-                        {/* <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#"
-                          className="custom-float-right"
-                        >
-                          Add
-                        </a> */}
+                    
 
                         <Select
                           value={sortByItemType}
@@ -457,17 +463,7 @@ const AddProductForm = (props) => {
                           Size
                         </label>
 
-                        {/* <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#addSpecificationModal"
-                          className="custom-float-right"
-                        >
-                          Add
-                        </a>
-                        <AddSpecificationInformation /> */}
-
-                        {/* <AddDepartmentInformation/>   */}
+                     
                         <Select
                           value={sortBySize}
                           onBlur={formik.handleBlur}
