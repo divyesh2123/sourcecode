@@ -1,10 +1,10 @@
+import { call, put, takeLatest } from "redux-saga/effects";
 import { getSizeDropDownData } from "../../services/size/sizeservice";
-import {  getSubCategoryDropDownData } from "../../services/subcategory/subcategoryservice";
-import { SubCategoryDdFailed, SubCategoryDdSucess, sizeDropdownSuccess } from "./action";
+import { sizeDropdownFailure, sizeDropdownSuccess } from "./action";
 
-function* getSizeDropdownSaga(action) {
+function* getSizeDropdownSaga() {
     try {
-        const getSizeData = yield call(getSizeDropDownData, action.payload);
+        const getSizeData = yield call(getSizeDropDownData);
         yield put(sizeDropdownSuccess(getSizeData.data));
     } catch (e) {
       yield put(sizeDropdownFailure(e.message));

@@ -27,7 +27,11 @@ export default {
                 return `${process.env.REACT_APP_PRODUCT_API_URL}/api/category/dropdown/subcategory/1/${category}`
         },
 
-        getSize : `${process.env.REACT_APP_PRODUCT_API_URL}/api/specification/dropdown/size/1`
+        getSize : `${process.env.REACT_APP_PRODUCT_API_URL}/api/specification/dropdown/size/1`,
+        
+        getPack:  `${process.env.REACT_APP_PRODUCT_API_URL}/api/specification/dropdown/pack/1`,
+
+        itemType: `${process.env.REACT_APP_PRODUCT_API_URL}/api/specificationtype/dropdown/1`
 
 
 }

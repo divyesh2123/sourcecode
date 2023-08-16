@@ -6,6 +6,9 @@ import { brandReducer } from "./brand/reducer";
 import { taxReducer } from "./tax/reducers";
 import { productReducer } from "./product/reducer";
 import { subCategoryReducer } from "./subcategory/reducer";
+import { sizeReducer } from "./size/reducer";
+import { packReducer } from "./pack/reducer";
+import { itemTypeReducer } from "./itemtype/reducer";
 
 const rootReducer = combineReducers({
     userReducer: userReducer,
@@ -14,7 +17,10 @@ const rootReducer = combineReducers({
     brand:brandReducer,
     taxReducer: taxReducer,
     productReducer: productReducer,
-    subCategoryReducer: subCategoryReducer
-});
+    subCategoryReducer: subCategoryReducer,
+    sizeReducer : sizeReducer,
+    packReducer: packReducer,
+    itemType: itemTypeReducer
+ });
 
 export default rootReducer;
