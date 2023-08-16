@@ -1,13 +1,13 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { packDropdownFailure, packDropdownSuccess } from "./action";
 import { getItemDropDownData } from "../../services/itemtypeservice/itemTypeservice";
+import { itemTypeDropdownFailure, itemTypeDropdownSuccess } from "./action";
 
 function* getItemTypeDropdownSaga() {
     try {
         const getpackData = yield call(getItemDropDownData);
-        yield put(packDropdownSuccess(getpackData.data));
+        yield put(itemTypeDropdownSuccess(getpackData.data));
     } catch (e) {
-      yield put(packDropdownFailure(e.message));
+      yield put(itemTypeDropdownFailure(e.message));
     }
   }
 
