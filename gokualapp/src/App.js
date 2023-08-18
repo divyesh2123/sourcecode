@@ -9,6 +9,7 @@ import SweetAlertConfirm from "./Utils/Alerts/SweetAlertConfirm";
 import SuparAdminDashboard from "./pages/SuperAdmin/SuparAdminDashboard";
 import ManageDepartment from "./pages/ManageDepartment/ManageDepartment";
 import ManageProduct from "./pages/ManageProduct/ManageProduct";
+import AddProductForm from "./components/product/AddProduct";
 function App() {
 
   const [alert, setAlert] = useState(null);
@@ -108,6 +109,17 @@ function App() {
               path="/ManageProduct"
               element={
                 <ManageProduct 
+                  showAlert={showAlert}
+                  showsAlert={showsAlert}
+                  showConfirm={showConfirm}
+                />
+              }
+            />
+
+<Route
+              path="/AddProduct"
+              element={
+                <AddProductForm 
                   showAlert={showAlert}
                   showsAlert={showsAlert}
                   showConfirm={showConfirm}

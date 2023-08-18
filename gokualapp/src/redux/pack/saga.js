@@ -12,7 +12,7 @@ function* getPackDropdownSaga() {
   }
 
   function* watchPackDropdown() {
-    yield takeLatest("PACK_DD_SUCCESS", getPackDropdownSaga);
+    yield takeLatest("PACK_DD_REQUEST", getPackDropdownSaga);
   }
   
   export default function* packRootSaga() {

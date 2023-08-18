@@ -129,7 +129,10 @@ const ManageProduct = (props) => {
           <div className="row">
             <div className="flex-shrink-0">
               <div className="d-flex gap-2 flex-wrap">
-               
+              <Link
+                  to="/AddProduct"
+                  style={{ textDecoration: "none" }}
+                >
                   <button
                     className="col btn custom-Green text-nowrap"
                     //  data-bs-toggle = "modal"
@@ -141,7 +144,7 @@ const ManageProduct = (props) => {
                   >
                     Add New
                   </button>
-                
+                  </Link>
 
                 <button
                   className="col btn custom-Blue text-nowrap w-50"
@@ -269,16 +272,7 @@ const ManageProduct = (props) => {
         </div>
       </div>
 
-      <div className="card-body">
-                        <div className="row mb-0">
-                            <AddProductForm
-                                editID={editID}
-                                setEditID={setEditID}
-                                show={openModel}
-                                handlecloseModel={handlecloseModel}
-                            ></AddProductForm>
-                        </div>
-                    </div>
+     
       
     </React.Fragment>
   );

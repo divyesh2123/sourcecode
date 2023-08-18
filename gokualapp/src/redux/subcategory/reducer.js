@@ -6,12 +6,7 @@ const SubCategoryInitialState = {
   };
   export const subCategoryReducer = (state = SubCategoryInitialState, action) => {
     switch (action.type) {
-      case SUB_CATEGORY_DD_REQUEST:
-        return {
-          ...state,
-          SubCatDrop: null,
-          error: null,
-        };
+      
       case SUB_CATEGORY_DD_SUCCESS:
         return {
           ...state,
