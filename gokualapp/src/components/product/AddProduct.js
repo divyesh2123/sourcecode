@@ -270,14 +270,11 @@ const AddProductForm = (props) => {
       >
 
 <div className="card">
-      <h5 className="text-center text-light">
-                  {props.editID != null ? "Edit Department Information" : "Add Department Information"}
-                </h5>
+    
 
      
 
-<ModalBody>
-<React.Fragment>
+
       <div
         className="container p-1 m-0"
         style={{ minWidth: "100%", maxWidth: "100%" }}
@@ -1632,9 +1629,9 @@ const AddProductForm = (props) => {
 
       </div>
       
-    </React.Fragment>
+    
 
-      </ModalBody>
+    
 
       </div>
       </div>
