@@ -112,6 +112,26 @@ const DepartmentList = (props) => {
                 justifyContent: "center",
               }}
             >
+
+              {props.handelSelect && <i
+                className="btn btn btn-primary custom-Green fst-normal"
+                onClick={() => 
+                  
+                  {
+                  props.handelSelect({
+                    label: row.getValue('name'),
+                    value: row.Id
+                  })
+                
+                  props.handlecloseModel();
+                  
+                 
+                }
+                
+                }
+              >
+                {"  Select"}
+                </i> }
               <i
                 className="btn btn btn-primary fst-normal"
                 onClick={() => {
@@ -129,6 +149,9 @@ const DepartmentList = (props) => {
               >
                 {"  Delete"}
               </i>
+
+             
+             
             </Box>
           )}
           mantineTableContainerProps={{

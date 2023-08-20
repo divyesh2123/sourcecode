@@ -81,6 +81,10 @@ const AddDepartmentForm = (props) => {
 
     }
 
+    return () => {
+      // cleaning up the listeners here
+  }
+
   }, [props.editID]);
 
 

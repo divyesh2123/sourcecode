@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { productField, productValidation } from "../../enhancer/product/productfields";
-import { Formik, useFormik } from "formik";
+import { useFormik,FormikProvider } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Form, FormFeedback, FormGroup, Input, Label, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
 import Select  from "react-select";
@@ -14,6 +14,8 @@ import { itemTypeDropdownRequest } from "../../redux/itemtype/action";
 import { categoryDropdownRequest } from "../../redux/category/action";
 import { SubCategoryDdRequest } from "../../redux/subcategory/action";
 import { TaxDropdownRequest } from "../../redux/tax/actions";
+import ManageDepartment from "../../pages/ManageDepartment/ManageDepartment";
+import DepartmentModal from "../shared/DepartmentModal";
 
 const AddProductForm = (props) => {
 
@@ -45,7 +47,8 @@ const AddProductForm = (props) => {
   const [unitInCase, setUnitInCase] = useState("");
   const [casecost, setCasecost] = useState("");
   const [caseprice, setCasePrice] = useState("");
-  const [isLoad,setisLoad]= useState(false);
+  const [isaddNewItemDepartment,setaddNewItemDepartment]= useState(false);
+
 
 
   const taxDropDownList = useSelector((state) => state?.taxReducer);
@@ -63,6 +66,7 @@ const AddProductForm = (props) => {
 
   const formik = useFormik({
     enableReinitialize: true,
+
     initialValues: productField,
     validationSchema: productValidation,
     onSubmit: (values) => {
@@ -139,7 +143,7 @@ const AddProductForm = (props) => {
    
 
 
-  }, [])
+  }, [departmentDropDownList])
 
   const handleCostPriceChange = (event) => {
 
@@ -261,6 +265,16 @@ const AddProductForm = (props) => {
   const handleAddNew = () => {
 
   }
+
+  const handleClose = ()=> {
+   
+    setaddNewItemDepartment(false);
+  }
+  const setDepartment = (department)=> {
+
+      
+    formik.setFieldValue("department",department)
+  }
   
 
   return (
@@ -270,22 +284,16 @@ const AddProductForm = (props) => {
       >
 
 <div className="card">
-    
-
-     
-
 
       <div
         className="container p-1 m-0"
         style={{ minWidth: "100%", maxWidth: "100%" }}
       >
         <div className="card">
-          <Formik
-            initialValues={formik.initialValues}
-            validationSchema={formik.validationSchema}
-            onSubmit={formik.onSubmit}
+          <FormikProvider
+            value={formik}
           >
-            {/*    form of open popup  */}
+         
             <Form
               className="tablelist-form needs-validation"
               autoComplete="off"
@@ -374,64 +382,27 @@ const AddProductForm = (props) => {
                         ) : null}
                       </FormGroup>
                     </Col>
-                    <Col md="3">
-                      <FormGroup>
-                        <label htmlFor="Tax" className="text-dark">
-                          Tax
-                        </label>
-                        <Select
-                          name="Tax"
-                          type="text"
-                          className="js-example-basic-single mb-0 text-dark "
-                          id="Tax"
-                          options={ taxDropDownList?.taxDropDownData?.listResult ?? []}
-                          onChange={(e) => {
-                            handleTaxChange(e);
-                          }}
-                          value={sortByTax}
-                        />
-                      </FormGroup>
-                    </Col>
-                    <Col md="3">
-                      <FormGroup>
-                        <label htmlFor="SKU" className="text-dark">
-                          SKU
-                        </label>
-                        <Input
-                          name="SKU"
-                          // placeholder="SKU"
-                          type="text"
-                          className="form-control"
-                          //style={{ background: "#f5f5dc" }}
-                          id="SKU"
-                          onChange={formik.handleChange}
-                          onBlur={formik.handleBlur}
-                          value={formik.values.SKU}
-                          readOnly
-                        />
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md="3">
+
+                    <Col md="2">
                       <FormGroup>
                         <label htmlFor="Department" className="text text-dark">
                           Department
                         </label>
 
                         <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#exampleModalLabel33"
+                         
+                          onClick={()=> {
+                            setaddNewItemDepartment(true)
+                          }}
                           className="custom-float-right"
                         >
-                          Add
+                          Add New
                         </a>
 
                         {/* <AddDepartmentInfo {...props} tag={true} /> */}
                         {/* <EditDepartMent {...props} tag={true} /> */}
                         <Select
-                          value={sortByDepartment}
+                          value={formik.values.department}
                           onBlur={formik.handleBlur}
                           onChange={(e) => {
                             console.log("e: ", e);
@@ -441,15 +412,24 @@ const AddProductForm = (props) => {
                           options={ departmentDropDownList?.DepartmentDdState?.listResult ?? []}
                           id="department1"
                           className="js-example-basic-single mb-0 text-dark "
-                          name="department1"
+                          name="department"
                         />
                       </FormGroup>
                     </Col>
-                    <Col md="3">
+                    <Col md="2">
                       <FormGroup>
                         <label htmlFor="Category" className="text text-dark">
                           Category
                         </label>
+
+                        <a
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModalLabel33"
+                          className="custom-float-right"
+                        >
+                          Add New
+                        </a>
 
                         {/* <a
                           //href="#"
@@ -475,14 +455,21 @@ const AddProductForm = (props) => {
                         />
                       </FormGroup>
                     </Col>
-                    {/* <ManageCategory /> */}
-
-                    {/* <AddCategoryInformation /> */}
-                    <Col md="3">
+                   
+                    <Col md="2">
                       <FormGroup>
                         <label htmlFor="SubCategory" className="text text-dark">
                           Sub Category
                         </label>
+
+                        <a
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModalLabel33"
+                          className="custom-float-right"
+                        >
+                          Add New
+                        </a>
 
                         {/* <a
                           href="#"
@@ -507,11 +494,23 @@ const AddProductForm = (props) => {
                         />
                       </FormGroup>
                     </Col>
-                    <Col md="3">
+             
+                  </Row>
+                  <Row>
+
+                  <Col md="2">
                       <FormGroup>
                         <label htmlFor="ItemType" className="text text-dark">
                           Item Type
                         </label>
+                        <a
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModalLabel33"
+                          className="custom-float-right"
+                        >
+                          Add New
+                        </a>
 
                     
 
@@ -529,13 +528,188 @@ const AddProductForm = (props) => {
                         />
                       </FormGroup>
                     </Col>
+
+                  <Col md="2">
+                      <FormGroup>
+                        <label htmlFor="Tax" className="text-dark">
+                          Tax
+                        </label>
+                        <a
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModalLabel33"
+                          className="custom-float-right"
+                        >
+                          Add New
+                        </a>
+                        <Select
+                          name="Tax"
+                          type="text"
+                          className="js-example-basic-single mb-0 text-dark "
+                          id="Tax"
+                          options={ taxDropDownList?.taxDropDownData?.listResult ?? []}
+                          onChange={(e) => {
+                            handleTaxChange(e);
+                          }}
+                          value={sortByTax}
+                        />
+                      </FormGroup>
+                    </Col>
+
+                    <Col md="2">
+                      <FormGroup >
+
+                       
+
+                      <label htmlFor="Brand" className="text text-dark">
+                          Brand
+                        </label>
+
+                        <a
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModalLabel33"
+                          className="custom-float-right"
+                        >
+                          Add New
+                        </a>
+                        <Select
+                       
+                          onChange={(sortByBrand) => {
+                           
+                          }}
+                          options={
+                            brandDropDownList?.brandDropDownData?.listResult === null
+                              ? ""
+                              : brandDropDownList?.brandDropDownData?.listResult
+                          }
+                          id="brandgroup"
+                          className="js-example-basic-single mb-0 text-dark"
+                          name="brandgroup"
+                         
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col md="2">
+                      <FormGroup>
+                        <label htmlFor="SKU" className="text-dark">
+                          Vintage
+                        </label>
+                        <Input
+                          name="Vintage"
+                          // placeholder="SKU"
+                          type="text"
+                          className="form-control"
+                          //style={{ background: "#f5f5dc" }}
+                          id="Vintage"
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          value={formik.values.Vintage}
+                          readOnly
+                        />
+                      </FormGroup>
+                    </Col>
+                  
+                 
+
+                
+                          
+                    <Col md="4">
+
+<FormGroup check
+inline >
+    <input
+      className="form-check-input mt-4"
+      type="checkbox"
+      id="Inactive"
+      name="Inactive"
+      // value={}
+      // onChange={}
+    />
+    <label
+      className="form-check-label text-dark ms-3 mt-4"
+      htmlFor="Inactive"
+    >
+      Inactive
+    </label>
+  </FormGroup>
+  <FormGroup check
+inline>
+    <input
+      className="form-check-input mt-4"
+      type="checkbox"
+      id="Inactive"
+      name="Inactive"
+      // value={}
+      // onChange={}
+    />
+    <label
+      className="form-check-label
+       text-dark ms-3 mt-4"
+      htmlFor="Inactive"
+    >
+       Prompt For Quantity
+    </label>
+  </FormGroup>
+
+  <FormGroup check
+inline>
+    <input
+      className="form-check-input mt-4"
+      type="checkbox"
+      id="Inactive"
+      name="Inactive"
+      // value={}
+      // onChange={}
+    />
+    <label
+      className="form-check-label text-dark ms-3 mt-4"
+      htmlFor="Inactive"
+    >
+      Promotion For Price
+    </label>
+  </FormGroup>
+
+  <FormGroup check
+inline>
+    <input
+      className="form-check-input mt-4"
+      type="checkbox"
+      id="Inactive"
+      name="Inactive"
+      // value={}
+      // onChange={}
+    />
+    <label
+      className="form-check-label 
+      text-dark ms-3 mt-4"
+      htmlFor="Inactive"
+    >
+       Non Stock Item
+    </label>
+  </FormGroup>
+</Col>
+
+                 
+                    
+                  
                   </Row>
                   <Row>
-                    <Col md="3">
+                 
+                  <Col md="2">
                       <FormGroup>
                         <label htmlFor="Size" className="text text-dark">
                           Size
                         </label>
+
+                        <a
+                          href="#"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModalLabel33"
+                          className="custom-float-right"
+                        >
+                          Add New
+                        </a>
 
                      
                         <Select
@@ -553,7 +727,7 @@ const AddProductForm = (props) => {
                         />
                       </FormGroup>
                     </Col>
-                    <Col md="3">
+                    <Col md="2">
                       <FormGroup>
                         <label htmlFor="Pack" className="text text-dark">
                           Pack
@@ -585,54 +759,13 @@ const AddProductForm = (props) => {
                         />
                       </FormGroup>
                     </Col>
-                    <Col md="3">
-                      <FormGroup>
-                        <input
-                          className="form-check-input mt-4"
-                          type="checkbox"
-                          id="Inactive"
-                          name="Inactive"
-                          // value={}
-                          // onChange={}
-                        />
-                        <label
-                          className="form-check-label text-dark ms-3 mt-4"
-                          htmlFor="Inactive"
-                        >
-                          Inactive
-                        </label>
-                      </FormGroup>
-                    </Col>
+                   
 
-                    {sortByItemType?.value == 2 && (
-                      <button
-                        className="btn col-1 custom-Green ms-3 me-1 px-0 mt-2"
-                        type="button"
-                        onClick={handleAddNew}
-                      >
-                        Add New
-                      </button>
-                    )}
+                   
 
-                    {/* <Col md="3">
-                      <FormGroup>
-                        <input
-                          className="form-check-input mt-4"
-                          type="checkbox"
-                          id="IsMiscSoldAllowed"
-                          name="IsMiscSoldAllowed"
-                          onChange={handleCheckboxChange2}
-                          value={formik.values.IsMiscSoldAllowed}
-                          checked={formik.values.IsMiscSoldAllowed}
-                        />
-                        <label
-                          className="form-check-label text-dark ms-3 mt-4"
-                          htmlFor="IsMiscSoldAllowed"
-                        >
-                          Is Misc Sold Allowed
-                        </label>
-                      </FormGroup>
-                    </Col> */}
+                  
+
+                    
                   </Row>
                 </div>
                 {/* //teb open Code */}
@@ -1623,13 +1756,18 @@ const AddProductForm = (props) => {
               </div>
               
             </Form>
-          </Formik>
+          </FormikProvider>
         </div>
 
 
       </div>
       
     
+            <DepartmentModal 
+            isopen={isaddNewItemDepartment}
+            handleClose= {handleClose}
+            handelSelect= { setDepartment}
+            ></DepartmentModal>
 
     
 

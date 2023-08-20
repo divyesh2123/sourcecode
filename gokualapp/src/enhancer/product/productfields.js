@@ -12,7 +12,8 @@ export const productField = {
     NonDiscount: false,
     name:  "",
     UPC: "",
-    SKU:""
+    SKU:"",
+    department: null
     }
 
 

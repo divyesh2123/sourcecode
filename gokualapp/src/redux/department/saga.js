@@ -16,6 +16,7 @@ import {
     clearGetDepartmentDataById,
     departmentDropdownSuccess,
     departmentDropdownFailure,
+    cleardepartmentDropdownRequest,
 
 } from "./actions";
 import axios from "axios";
@@ -51,8 +52,9 @@ function* addDepartmentSaga(action) {
                 dangerMode: true,
 
 
-            })
+            } )
             yield put(cleardepartmentListData());
+           
 
         } else {
             return;

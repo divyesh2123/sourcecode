@@ -13,7 +13,7 @@ const ManageDepartment = (props) => {
     const departmentList = useSelector((state) => state.departmentReducer);
     const dispatch = useDispatch();
     const [editID, setEditID] = useState(null);
-    const [openModel,setOpenModel] = useState(false);
+    const [openModel,setOpenModel] = useState(props.isaddNewItemDepartment || false);
 
     useEffect(()=> {
 
@@ -80,11 +80,7 @@ const ManageDepartment = (props) => {
                             </div>
                         </div>
                     </div>
-                    {/* <EditDepartMentForm
-                        editID={editID}
-                        setEditID={setEditID}
-                        showsAlert={props.showsAlert}
-                    /> */}
+                 
                     <div className="card-body">
                         <div className="row mb-0">
                             <DepartmentList

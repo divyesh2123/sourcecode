@@ -26,6 +26,7 @@ export const departmentReducer = (
             error: null,
         };
 
+       
         case DEPARTMENT_DD_FAILURE:
       return {
         ...state,
@@ -58,7 +59,14 @@ export const departmentReducer = (
         case CLEAR_DEPARTMENT_LIST_DATA:
             return {
                 ...state,
+                error: null,
                 departmentData: null,
+                isDepartmentListLoadding: false,
+                brandDelData: null,
+                updateDepartmentData: null,
+                addDepartmentData: null,
+                getDepartmentDetailsData: null,
+                DepartmentDdState: null,
                 error: null,
             };
 
