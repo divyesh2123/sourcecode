@@ -795,6 +795,13 @@ const AddProductForm = (props) => {
                             
                           </Row>
 
+                          <Row>
+
+                         
+
+
+                          </Row>
+
 
                         </div>
 
