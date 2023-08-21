@@ -1284,6 +1284,7 @@ const AddProductForm = (props) => {
 
 
                           <Row className="mt-2">
+                            <Col md="2">
                             <Col>
                               <FormGroup  >
                                 <input
@@ -1382,8 +1383,11 @@ const AddProductForm = (props) => {
                                 </label>
                               </FormGroup>
                             </Col>
-                          </Row>
-                          <Row>
+
+                            </Col>
+
+                            <Col md="4">
+
                             <Col>
                               <FormGroup>
                                 <input
@@ -1481,280 +1485,18 @@ const AddProductForm = (props) => {
                                 </label>
                               </FormGroup>
                             </Col>
+                            
+                            </Col>
+
+                            <Col md="4">
+
+                            </Col>
                           </Row>
+                          
 
                         </div>
 
-                        <div
-                          className="tab-pane"
-                          id="addproduct-metadata"
-                          role="tabpanel"
-                        >
-                          <Row>
-                            <Col>
-                              <FormGroup>
-                                <Label htmlFor="SKU " className="text-dark">
-                                  SKU
-                                </Label>
-                                <Input
-                                  name="SKU"
-
-                                  type="text"
-                                  className="form-control"
-
-                                  id="SKU"
-                                />
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <Label htmlFor="Item" className="text-dark">
-                                  Item
-                                </Label>
-                                <Input
-                                  name="Item"
-
-                                  type="text"
-                                  className="form-control"
-
-                                  id="Item"
-                                />
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <Label htmlFor="Quantity" className="text-dark">
-                                  Quantity
-                                </Label>
-                                <Input
-                                  name="Quantity"
-
-                                  type="text"
-                                  className="form-control"
-
-                                  id="Quantity"
-                                />
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input"
-                                  style={{ marginTop: "32px" }}
-                                  type="checkbox"
-                                  id="MultiplybyPack"
-                                  name="MultiplybyPack"
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3 "
-                                  style={{ marginTop: "32px" }}
-                                  htmlFor="MultiplybyPack"
-                                >
-                                  Multiply by Pack
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <div className="d-grid gap-2 d-md-block mt-4">
-                                <button className="btn btn-primary" type="button">
-                                  Add
-                                </button>
-                                <button
-                                  className="btn btn-primary ms-2"
-                                  type="button"
-                                >
-                                  Remove
-                                </button>
-                              </div>
-                            </Col>
-                          </Row>
-
-                          <Row className="mt-2">
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input"
-
-                                  type="checkbox"
-                                  id="NonDiscount"
-                                  name="NonDiscount"
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3 mt-1"
-
-                                  htmlFor="NonDiscount"
-                                >
-                                  Non Discountable
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
-
-                                  type="checkbox"
-                                  id="DepositeItem"
-                                  name="DepositeItem"
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
-
-                                  htmlFor="DepositeItem"
-                                >
-                                  Deposite Item
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
-
-                                  type="checkbox"
-                                  id="AcceptFoodStamp"
-                                  name="AcceptFoodStamp"
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
-
-                                  htmlFor="AcceptFoodStamp"
-                                >
-                                  Accept Food Stamp
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
-
-                                  type="checkbox"
-                                  id="NonRevenue"
-                                  name="NonRevenue"
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
-
-                                  htmlFor="NonRevenue"
-                                >
-                                  Non Revenue
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
-
-                                  type="checkbox"
-                                  id="NonCountable"
-                                  name="NonCountable"
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
-
-                                  htmlFor="NonCountable"
-                                >
-                                  Non Countable
-                                </label>
-                              </FormGroup>
-                            </Col>
-                          </Row>
-                          <Row>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
-
-                                  type="checkbox"
-                                  id="AcceptWicCheck"
-                                  name="AcceptWicCheck"
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
-
-                                  htmlFor="AcceptWicCheck"
-                                >
-                                  Accept Wic Check
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
-
-                                  type="checkbox"
-                                  id="id7"
-                                  name="id7"
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
-
-                                  htmlFor="id7"
-                                >
-                                  Count With No Disc
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
-
-                                  type="checkbox"
-                                  id="WeightedItem"
-                                  name="WeightedItem"
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
-
-                                  htmlFor="WeightedItem"
-                                >
-                                  Weighted Item
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
-
-                                  type="checkbox"
-                                  id="WebItem"
-                                  name="WebItem"
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
-
-                                  htmlFor="WebItem"
-                                >
-                                  Web Item
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
-
-                                  type="checkbox"
-                                  id="ReturnItem"
-                                  name="ReturnItem"
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
-
-                                  htmlFor="ReturnItem"
-                                >
-                                  Return Item
-                                </label>
-                              </FormGroup>
-                            </Col>
-                          </Row>
-
-                        </div>
+                       
 
                       </div>
 
