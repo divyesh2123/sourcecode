@@ -1170,7 +1170,7 @@ const AddProductForm = (props) => {
 
                               <Row>
                                 <h6 className="mt-2">UPC</h6>
-                                <Col md="6">
+                                <Col md="8">
                                   <div
                                     className="container p-1"
                                     style={{
@@ -1245,7 +1245,7 @@ const AddProductForm = (props) => {
                               </Row>
 
                               <Row>
-                                <Col md="10">
+                                <Col md="11">
                                   <div className="mt-4">
                                     <div
                                       style={{
