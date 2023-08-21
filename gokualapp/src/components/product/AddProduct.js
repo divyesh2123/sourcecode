@@ -16,6 +16,7 @@ import { SubCategoryDdRequest } from "../../redux/subcategory/action";
 import { TaxDropdownRequest } from "../../redux/tax/actions";
 import ManageDepartment from "../../pages/ManageDepartment/ManageDepartment";
 import DepartmentModal from "../shared/DepartmentModal";
+import StockForm from "../stock/StockForm";
 
 const AddProductForm = (props) => {
 
@@ -1158,8 +1159,8 @@ const AddProductForm = (props) => {
                                     className="container p-1"
                                     style={{
                                       maxHeight: "90px",
-                                      minHeight: "90px",
-                                      width: "220px",
+                                      minHeight: "120px",
+                                     
                                       overflowY: "Scroll",
                                     }}
                                   >
@@ -1274,7 +1275,9 @@ const AddProductForm = (props) => {
                               </Row>
                             </Col>
 
-                            <Col md="2">
+                            <Col md="3">
+
+                            <StockForm/>
 
                             </Col>
                             
@@ -1489,6 +1492,8 @@ const AddProductForm = (props) => {
                             </Col>
 
                             <Col md="4">
+
+                             
 
                             </Col>
                           </Row>
