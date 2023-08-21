@@ -17,6 +17,7 @@ import { TaxDropdownRequest } from "../../redux/tax/actions";
 import ManageDepartment from "../../pages/ManageDepartment/ManageDepartment";
 import DepartmentModal from "../shared/DepartmentModal";
 import StockForm from "../stock/StockForm";
+import BasicProductForm from '../product/BasicProductInfo'
 
 const AddProductForm = (props) => {
 
@@ -44,23 +45,8 @@ const AddProductForm = (props) => {
   const [isaddNewItemDepartment, setaddNewItemDepartment] = useState(false);
 
 
-
-  const taxDropDownList = useSelector((state) => state?.taxReducer);
-  const brandDropDownList = useSelector((state) => state?.brand);
-  const departmentDropDownList = useSelector((state) => state?.departmentReducer);
-  const sizeDropDownList = useSelector((state) => state?.sizeReducer);
-  const packDropDownList = useSelector((state) => state?.packReducer);
-  const itemTypeDropDownList = useSelector((state) => state?.itemType);
-  const categoryDownList = useSelector((state) => state?.cateogry);
-  const subCategoryDownList = useSelector((state) => state?.subCategoryReducer);
-
-
-
-
-
   const formik = useFormik({
     enableReinitialize: true,
-
     initialValues: productField,
     validationSchema: productValidation,
     onSubmit: (values) => {
@@ -70,73 +56,7 @@ const AddProductForm = (props) => {
 
 
 
-  useEffect(() => {
 
-    if (taxDropDownList.taxDropDownData === null &&
-      taxDropDownList.error === null) {
-      dispatch(TaxDropdownRequest());
-    }
-    if (
-      brandDropDownList.brandDropDownData === null &&
-      brandDropDownList.error === null
-    ) {
-
-      dispatch(BrandDropdownRequest());
-    }
-
-    if (
-      departmentDropDownList.DepartmentDdState === null &&
-      departmentDropDownList.error === null
-    ) {
-
-      dispatch(departmentDropdownRequest());
-    }
-
-    if (
-      sizeDropDownList.SizeDdState === null &&
-      sizeDropDownList.error === null
-    ) {
-
-      dispatch(sizeDropdownRequest());
-    }
-
-    if (
-      packDropDownList.PackDdState === null &&
-      packDropDownList.error === null
-    ) {
-
-      dispatch(packDropdownRequest());
-    }
-
-    if (
-      itemTypeDropDownList.ItemTypeDdState === null &&
-      itemTypeDropDownList.error === null
-    ) {
-
-      dispatch(itemTypeDropdownRequest());
-    }
-
-    if (
-      categoryDownList.CategoryDdState === null &&
-      categoryDownList.error === null
-    ) {
-
-      dispatch(categoryDropdownRequest());
-    }
-
-    if (
-      subCategoryDownList.SubCatDrop === null &&
-      subCategoryDownList.error === null
-    ) {
-
-      dispatch(SubCategoryDdRequest(0));
-    }
-
-
-
-
-
-  }, [departmentDropDownList])
 
   const handleCostPriceChange = (event) => {
 
@@ -317,431 +237,12 @@ const AddProductForm = (props) => {
                 </div>
                 <div className="card-body p-0">
                   <div className=" p-3 pb-0">
-                    <Row>
-                      <Col md="3">
-                        <FormGroup>
-                          <label htmlFor="UPC " className="text-dark">
-                            UPC
-                          </label>
-                          <Input
-                            name="UPC"
-                         
-                            type="number"
-                            className="form-control"
-                           
-                            id="UPC"
-                            onKeyDown={handleKeyDown}
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.UPC}
-                            invalid={!!(formik.touched.UPC && formik.errors.UPC)}
-                          />
-                          {formik.touched.UPC && formik.errors.UPC ? (
-                            <FormFeedback type="invalid">
-                              {formik.errors.UPC}
-                            </FormFeedback>
-                          ) : null}
-                        </FormGroup>
-                      </Col>
-                      <Col md="3">
-                        <FormGroup>
-                          <label htmlFor="name " className="text-dark">
-                            Name
-                          </label>
-                          <Input
-                            name="name"
-                           
-                            type="text"
-                            className="form-control"
-                            style={{ background: "#f5f5dc" }}
-                            id="name"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.name}
-                            invalid={
-                              !!(formik.touched.name && formik.errors.name)
-                            }
-                          />
-                          {formik.touched.name && formik.errors.name ? (
-                            <FormFeedback type="invalid">
-                              {formik.errors.name}
-                            </FormFeedback>
-                          ) : null}
-                        </FormGroup>
-                      </Col>
 
-                      <Col md="2">
-                        <FormGroup>
-                          <label htmlFor="Department" className="text text-dark">
-                            Department
-                          </label>
-
-                          <a
-
-                            onClick={() => {
-                              setaddNewItemDepartment(true)
-                            }}
-                            className="custom-float-right"
-                          >
-                            Add New
-                          </a>
-
-                         
-                          <Select
-                            value={formik.values.department}
-                            onBlur={formik.handleBlur}
-                            onChange={(e) => {
-                             
-                            
-                            }}
-                            options={departmentDropDownList?.DepartmentDdState?.listResult ?? []}
-                            id="department1"
-                            className="js-example-basic-single mb-0 text-dark "
-                            name="department"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col md="2">
-                        <FormGroup>
-                          <label htmlFor="Category" className="text text-dark">
-                            Category
-                          </label>
-
-                          <a
-                            href="#"
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModalLabel33"
-                            className="custom-float-right"
-                          >
-                            Add New
-                          </a>
-
-                         
-
-                          <Select
-                            value={formik.values.category}
-                            onBlur={formik.handleBlur}
-                            onChange={(e) => {
-
-                              formik.handleChange("category");
-                            }}
-                            options={categoryDownList?.CategoryDdState?.listResult ?? []}
-                            id="category"
-                            className="js-example-basic-single mb-0 text-dark "
-                            name="category"
-                          />
-                        </FormGroup>
-                      </Col>
-
-                      <Col md="2">
-                        <FormGroup>
-                          <label htmlFor="SubCategory" className="text text-dark">
-                            Sub Category
-                          </label>
-
-                          <a
-                            href="#"
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModalLabel33"
-                            className="custom-float-right"
-                          >
-                            Add New
-                          </a>
-
-                          
-
-                          <Select
-                            value={formik.values.subcategory}
-                            onBlur={formik.handleBlur}
-                            onChange={(e) => {
-                              handleSubCategoryChange(e);
-                              formik.handleChange("subCategory");
-                            }}
-                            options={subCategoryDownList.SubCatDrop?.listResult ?? []}
-                            id="subCategory"
-                            className="js-example-basic-single mb-0 text-dark "
-                            name="subCategory"
-                          />
-                        </FormGroup>
-                      </Col>
-
-                    </Row>
-                    <Row>
-
-                      <Col md="2">
-                        <FormGroup>
-                          <label htmlFor="ItemType" className="text text-dark">
-                            Item Type
-                          </label>
-                          <a
-                            href="#"
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModalLabel33"
-                            className="custom-float-right"
-                          >
-                            Add New
-                          </a>
+                    <BasicProductForm formik={formik}></BasicProductForm>
 
 
-
-                          <Select
-                            value={formik.values.itemType}
-                            onBlur={formik.handleBlur}
-                            onChange={(e) => {
-                              handleItemTypeChange(e);
-                              formik.handleChange("itemType");
-                            }}
-                            options={itemTypeDropDownList?.ItemTypeDdState?.listResult ?? []}
-                            id="itemType"
-                            className="js-example-basic-single mb-0 text-dark "
-                            name="itemType"
-                          />
-                        </FormGroup>
-                      </Col>
-
-                      <Col md="2">
-                        <FormGroup>
-                          <label htmlFor="Tax" className="text-dark">
-                            Tax
-                          </label>
-                          <a
-                            href="#"
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModalLabel33"
-                            className="custom-float-right"
-                          >
-                            Add New
-                          </a>
-                          <Select
-                            name="Tax"
-                            type="text"
-                            className="js-example-basic-single mb-0 text-dark "
-                            id="Tax"
-                            value={formik.values.tax}
-                            options={taxDropDownList?.taxDropDownData?.listResult ?? []}
-                            onChange={(e) => {
-                              handleTaxChange(e);
-                            }}
-
-                          />
-                        </FormGroup>
-                      </Col>
-
-                      <Col md="2">
-                        <FormGroup >
-
-
-
-                          <label htmlFor="Brand" className="text text-dark">
-                            Brand
-                          </label>
-
-                          <a
-                            href="#"
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModalLabel33"
-                            className="custom-float-right"
-                          >
-                            Add New
-                          </a>
-                          <Select
-                            value={formik.values.brand}
-                            onChange={(sortByBrand) => {
-
-                            }}
-                            options={
-                              brandDropDownList?.brandDropDownData?.listResult === null
-                                ? ""
-                                : brandDropDownList?.brandDropDownData?.listResult
-                            }
-                            id="brandgroup"
-                            className="js-example-basic-single mb-0 text-dark"
-                            name="brandgroup"
-
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col md="2">
-                        <FormGroup>
-                          <label htmlFor="SKU" className="text-dark">
-                            Vintage
-                          </label>
-                          <Input
-                            name="Vintage"
-                            // placeholder="SKU"
-                            type="text"
-                            className="form-control"
-                            //style={{ background: "#f5f5dc" }}
-                            id="Vintage"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.Vintage}
-                            readOnly
-                          />
-                        </FormGroup>
-                      </Col>
-
-
-
-
-
-                      <Col md="4">
-
-                        <FormGroup check
-                          inline >
-                          <input
-                            className="form-check-input mt-4"
-                            type="checkbox"
-                            id="Inactive"
-                            name="Inactive"
-                          // value={}
-                          // onChange={}
-                          />
-                          <label
-                            className="form-check-label text-dark ms-3 mt-4"
-                            htmlFor="Inactive"
-                          >
-                            Inactive
-                          </label>
-                        </FormGroup>
-                        <FormGroup check
-                          inline>
-                          <input
-                            className="form-check-input mt-4"
-                            type="checkbox"
-                            id="Inactive"
-                            name="Inactive"
-                          // value={}
-                          // onChange={}
-                          />
-                          <label
-                            className="form-check-label
-       text-dark ms-3 mt-4"
-                            htmlFor="Inactive"
-                          >
-                            Prompt For Quantity
-                          </label>
-                        </FormGroup>
-
-                        <FormGroup check
-                          inline>
-                          <input
-                            className="form-check-input mt-4"
-                            type="checkbox"
-                            id="Inactive"
-                            name="Inactive"
-                          // value={}
-                          // onChange={}
-                          />
-                          <label
-                            className="form-check-label text-dark ms-3 mt-4"
-                            htmlFor="Inactive"
-                          >
-                            Promotion For Price
-                          </label>
-                        </FormGroup>
-
-                        <FormGroup check
-                          inline>
-                          <input
-                            className="form-check-input mt-4"
-                            type="checkbox"
-                            id="Inactive"
-                            name="Inactive"
-                          // value={}
-                          // onChange={}
-                          />
-                          <label
-                            className="form-check-label 
-      text-dark ms-3 mt-4"
-                            htmlFor="Inactive"
-                          >
-                            Non Stock Item
-                          </label>
-                        </FormGroup>
-                      </Col>
-
-
-
-
-                    </Row>
-                    <Row>
-
-                      <Col md="2">
-                        <FormGroup>
-                          <label htmlFor="Size" className="text text-dark">
-                            Size
-                          </label>
-
-                          <a
-                            href="#"
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModalLabel33"
-                            className="custom-float-right"
-                          >
-                            Add New
-                          </a>
-
-
-                          <Select
-                            value={formik.values.size}
-                            onBlur={formik.handleBlur}
-                            onChange={(e) => {
-                              handleSizeChange(e);
-                              formik.handleChange("size");
-                            }}
-                            options={sizeDropDownList?.SizeDdState?.listResult
-                              ?? []}
-                            id="size"
-                            className="js-example-basic-single mb-0 text-dark "
-                            name="size"
-                          />
-                        </FormGroup>
-                      </Col>
-                      <Col md="2">
-                        <FormGroup>
-                          <label htmlFor="Pack" className="text text-dark">
-                            Pack
-                          </label>
-
-                          <a
-                            href="#"
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModalLabel33"
-                            className="custom-float-right"
-                          >
-                            Add New
-                          </a>
-
-
-
-
-                          <Select
-                            value={formik.values.pack}
-                            onBlur={formik.handleBlur}
-                            onChange={(e) => {
-                              handlePackChange(e);
-                              formik.handleChange("pack");
-                            }}
-                            options={packDropDownList?.PackDdState?.listResult
-                              ?? []
-                            }
-                            id="pack"
-                            className="js-example-basic-single mb-0 text-dark "
-                            name="pack"
-                          />
-                        </FormGroup>
-                      </Col>
-
-
-
-
-
-
-
-                    </Row>
                   </div>
-                 
+
                   <div
                     className="container p-0 m-0"
                     style={{ minWidth: "100%", background: "#fff" }}
@@ -1057,30 +558,30 @@ const AddProductForm = (props) => {
                               <Row>
                                 <Col  >
 
-                                <Row>
-                                  <div className="mb-0">
-                                    <label
-                                      htmlFor="UnitInCase"
-                                      className="form-label"
-                                    >
-                                      Unit In Case
-                                    </label>
-                                    <div className="input-group">
-                                      <Cleave
+                                  <Row>
+                                    <div className="mb-0">
+                                      <label
+                                        htmlFor="UnitInCase"
+                                        className="form-label"
+                                      >
+                                        Unit In Case
+                                      </label>
+                                      <div className="input-group">
+                                        <Cleave
 
-                                        options={{
-                                          numeral: true,
-                                          numeralThousandsGroupStyle: "ten",
-                                        }}
-                                        value={unitInCase}
-                                        onChange={(e) => onUnitInCaseChange(e)}
-                                        className="form-control text-end"
-                                        keyboardType="decimal-pad"
-                                        id="UnitInCase"
-                                        disabled={!formik.values.BuyAsCase}
-                                      />
+                                          options={{
+                                            numeral: true,
+                                            numeralThousandsGroupStyle: "ten",
+                                          }}
+                                          value={unitInCase}
+                                          onChange={(e) => onUnitInCaseChange(e)}
+                                          className="form-control text-end"
+                                          keyboardType="decimal-pad"
+                                          id="UnitInCase"
+                                          disabled={!formik.values.BuyAsCase}
+                                        />
+                                      </div>
                                     </div>
-                                  </div>
 
                                   </Row>
                                 </Col>
@@ -1120,33 +621,33 @@ const AddProductForm = (props) => {
 
                               </Row>
                               <Row>
-                              <Col >
-                                <div className="mb-0">
-                                  <label
-                                    htmlFor="CaseCost"
-                                    className="form-label"
-                                  >
-                                    Case Cost
-                                  </label>
-                                  <div className="input-group">
-                                    <Cleave
+                                <Col >
+                                  <div className="mb-0">
+                                    <label
+                                      htmlFor="CaseCost"
+                                      className="form-label"
+                                    >
+                                      Case Cost
+                                    </label>
+                                    <div className="input-group">
+                                      <Cleave
 
-                                      options={{
-                                        numeral: true,
-                                        numeralThousandsGroupStyle: "ten",
-                                      }}
-                                      value={casecost}
-                                      onChange={(e) => onCaseCostChange(e)}
-                                      className="form-control text-end"
-                                      keyboardType="decimal-pad"
-                                      id="CaseCost"
-                                      name="Ca"
-                                      disabled={!formik.values.BuyAsCase}
-                                    />
-                                    <span className="input-group-text">$</span>
+                                        options={{
+                                          numeral: true,
+                                          numeralThousandsGroupStyle: "ten",
+                                        }}
+                                        value={casecost}
+                                        onChange={(e) => onCaseCostChange(e)}
+                                        className="form-control text-end"
+                                        keyboardType="decimal-pad"
+                                        id="CaseCost"
+                                        name="Ca"
+                                        disabled={!formik.values.BuyAsCase}
+                                      />
+                                      <span className="input-group-text">$</span>
+                                    </div>
                                   </div>
-                                </div>
-                              </Col>
+                                </Col>
                               </Row>
                             </Col>
 
@@ -1160,7 +661,7 @@ const AddProductForm = (props) => {
                                     style={{
                                       maxHeight: "90px",
                                       minHeight: "120px",
-                                     
+
                                       overflowY: "Scroll",
                                     }}
                                   >
@@ -1277,10 +778,10 @@ const AddProductForm = (props) => {
 
                             <Col md="3">
 
-                            <StockForm/>
+                              <StockForm />
 
                             </Col>
-                            
+
                           </Row>
 
 
@@ -1288,220 +789,220 @@ const AddProductForm = (props) => {
 
                           <Row className="mt-2">
                             <Col md="2">
-                            <Col>
-                              <FormGroup  >
-                                <input
-                                  className="form-check-input"
+                              <Col>
+                                <FormGroup  >
+                                  <input
+                                    className="form-check-input"
 
-                                  type="checkbox"
-                                  id="NonDiscount"
-                                  name="NonDiscount"
-                                  onChange={formik.handleChange}
-                                  value={formik.values.NonDiscount}
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3 mt-1"
+                                    type="checkbox"
+                                    id="NonDiscount"
+                                    name="NonDiscount"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.NonDiscount}
+                                  />
+                                  <label
+                                    className="form-check-label text-dark ms-3 mt-1"
 
-                                  htmlFor="NonDiscount"
-                                >
-                                  Non Discountable
-                                </label>
-                              </FormGroup>
+                                    htmlFor="NonDiscount"
+                                  >
+                                    Non Discountable
+                                  </label>
+                                </FormGroup>
+                              </Col>
+                              <Col>
+                                <FormGroup>
+                                  <input
+                                    className="form-check-input "
+                                    type="checkbox"
+                                    id="DepositeItem"
+                                    name="DepositeItem"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.DepositeItem}
+                                  />
+                                  <label
+                                    className="form-check-label text-dark ms-3  mt-1"
+                                    htmlFor="DepositeItem"
+                                  >
+                                    Deposite Item
+                                  </label>
+                                </FormGroup>
+                              </Col>
+                              <Col>
+                                <FormGroup>
+                                  <input
+                                    className="form-check-input "
+
+                                    type="checkbox"
+                                    id="AcceptFoodStamp"
+                                    name="AcceptFoodStamp"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.AcceptFoodStamp}
+                                  />
+                                  <label
+                                    className="form-check-label text-dark ms-3  mt-1"
+
+                                    htmlFor="AcceptFoodStamp"
+                                  >
+                                    Accept Food Stamp
+                                  </label>
+                                </FormGroup>
+                              </Col>
+                              <Col>
+                                <FormGroup>
+                                  <input
+                                    className="form-check-input "
+
+                                    type="checkbox"
+                                    id="NonRevenue"
+                                    name="NonRevenue"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.NonRevenue}
+                                  />
+                                  <label
+                                    className="form-check-label text-dark ms-3  mt-1"
+
+                                    htmlFor="NonRevenue"
+                                  >
+                                    Non Revenue
+                                  </label>
+                                </FormGroup>
+                              </Col>
+                              <Col>
+                                <FormGroup>
+                                  <input
+                                    className="form-check-input "
+
+                                    type="checkbox"
+                                    id="NonCountable"
+                                    name="NonCountable"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.NonCountable}
+                                  />
+                                  <label
+                                    className="form-check-label text-dark ms-3  mt-1"
+
+                                    htmlFor="NonCountable"
+                                  >
+                                    Non Countable
+                                  </label>
+                                </FormGroup>
+                              </Col>
+
                             </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
-                                  type="checkbox"
-                                  id="DepositeItem"
-                                  name="DepositeItem"
-                                  onChange={formik.handleChange}
-                                  value={formik.values.DepositeItem}
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
-                                  htmlFor="DepositeItem"
-                                >
-                                  Deposite Item
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
 
-                                  type="checkbox"
-                                  id="AcceptFoodStamp"
-                                  name="AcceptFoodStamp"
-                                  onChange={formik.handleChange}
-                                  value={formik.values.AcceptFoodStamp}
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
+                            <Col md="4">
 
-                                  htmlFor="AcceptFoodStamp"
-                                >
-                                  Accept Food Stamp
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
+                              <Col>
+                                <FormGroup>
+                                  <input
+                                    className="form-check-input "
 
-                                  type="checkbox"
-                                  id="NonRevenue"
-                                  name="NonRevenue"
-                                  onChange={formik.handleChange}
-                                  value={formik.values.NonRevenue}
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
+                                    type="checkbox"
+                                    id="AcceptWicCheck"
+                                    name="AcceptWicCheck"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.AcceptWicCheck}
+                                  />
+                                  <label
+                                    className="form-check-label text-dark ms-3  mt-1"
+                                    htmlFor="AcceptWicCheck"
+                                  >
+                                    Accept Wic Check
+                                  </label>
+                                </FormGroup>
+                              </Col>
+                              <Col>
+                                <FormGroup>
+                                  <input
+                                    className="form-check-input "
+                                    type="checkbox"
+                                    id="CountWithNoDisc"
+                                    name="CountWithNoDisc"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.ShowInOpenPrice}
+                                  />
+                                  <label
+                                    className="form-check-label text-dark ms-3  mt-1"
 
-                                  htmlFor="NonRevenue"
-                                >
-                                  Non Revenue
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
+                                    htmlFor="CountWithNoDisc"
+                                  >
+                                    Count With No Disc
+                                  </label>
+                                </FormGroup>
+                              </Col>
+                              <Col>
+                                <FormGroup>
+                                  <input
+                                    className="form-check-input "
 
-                                  type="checkbox"
-                                  id="NonCountable"
-                                  name="NonCountable"
-                                  onChange={formik.handleChange}
-                                  value={formik.values.NonCountable}
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
+                                    type="checkbox"
+                                    id="WeightedItem"
+                                    name="WeightedItem"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.WeightedItem}
+                                  />
+                                  <label
+                                    className="form-check-label text-dark ms-3  mt-1"
 
-                                  htmlFor="NonCountable"
-                                >
-                                  Non Countable
-                                </label>
-                              </FormGroup>
-                            </Col>
+                                    htmlFor="WeightedItem"
+                                  >
+                                    Weighted Item
+                                  </label>
+                                </FormGroup>
+                              </Col>
+                              <Col>
+                                <FormGroup>
+                                  <input
+                                    className="form-check-input "
+
+                                    type="checkbox"
+                                    id="WebItem"
+                                    name="WebItem"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.WebItem}
+                                  />
+                                  <label
+                                    className="form-check-label text-dark ms-3  mt-1"
+                                    htmlFor="WebItem"
+                                  >
+                                    Web Item
+                                  </label>
+                                </FormGroup>
+                              </Col>
+                              <Col>
+                                <FormGroup>
+                                  <input
+                                    className="form-check-input "
+
+                                    type="checkbox"
+                                    id="ReturnItem"
+                                    name="ReturnItem"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.ReturnItem}
+                                  />
+                                  <label
+                                    className="form-check-label text-dark ms-3  mt-1"
+
+                                    htmlFor="ReturnItem"
+                                  >
+                                    Return Item
+                                  </label>
+                                </FormGroup>
+                              </Col>
 
                             </Col>
 
                             <Col md="4">
 
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
 
-                                  type="checkbox"
-                                  id="AcceptWicCheck"
-                                  name="AcceptWicCheck"
-                                  onChange={formik.handleChange}
-                                  value={formik.values.AcceptWicCheck}
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
-                                  htmlFor="AcceptWicCheck"
-                                >
-                                  Accept Wic Check
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
-                                  type="checkbox"
-                                  id="CountWithNoDisc"
-                                  name="CountWithNoDisc"
-                                  onChange={formik.handleChange}
-                                  value={formik.values.ShowInOpenPrice}
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
-
-                                  htmlFor="CountWithNoDisc"
-                                >
-                                  Count With No Disc
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
-
-                                  type="checkbox"
-                                  id="WeightedItem"
-                                  name="WeightedItem"
-                                  onChange={formik.handleChange}
-                                  value={formik.values.WeightedItem}
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
-
-                                  htmlFor="WeightedItem"
-                                >
-                                  Weighted Item
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
-
-                                  type="checkbox"
-                                  id="WebItem"
-                                  name="WebItem"
-                                  onChange={formik.handleChange}
-                                  value={formik.values.WebItem}
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
-                                  htmlFor="WebItem"
-                                >
-                                  Web Item
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            <Col>
-                              <FormGroup>
-                                <input
-                                  className="form-check-input "
-
-                                  type="checkbox"
-                                  id="ReturnItem"
-                                  name="ReturnItem"
-                                  onChange={formik.handleChange}
-                                  value={formik.values.ReturnItem}
-                                />
-                                <label
-                                  className="form-check-label text-dark ms-3  mt-1"
-
-                                  htmlFor="ReturnItem"
-                                >
-                                  Return Item
-                                </label>
-                              </FormGroup>
-                            </Col>
-                            
-                            </Col>
-
-                            <Col md="4">
-
-                             
 
                             </Col>
                           </Row>
-                          
+
 
                         </div>
 
-                       
+
 
                       </div>
 
@@ -1519,11 +1020,6 @@ const AddProductForm = (props) => {
         </div>
 
 
-        <DepartmentModal
-          isopen={isaddNewItemDepartment}
-          handleClose={handleClose}
-          handelSelect={setDepartment}
-        ></DepartmentModal>
 
 
 
