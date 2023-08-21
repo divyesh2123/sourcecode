@@ -809,7 +809,7 @@ const AddProductForm = (props) => {
                           role="tabpanel"
                         >
                           <Row>
-                            <Col md="5">
+                            <Col md="3">
                               <h6>Cost & Price</h6>
                               <Row>
                                 <Col>
@@ -1037,13 +1037,15 @@ const AddProductForm = (props) => {
                                 </Col>
                               </Row>
                             </Col>
-                            <Col md="7">
+
+                            <Col md="2">
+                              <h6 className="mt-4">Buy Case</h6>
                               <Row>
-                                <Col md="2">
-                                  <h6 className="mt-2">Buy Case</h6>
-                                </Col>
-                                <Col>
-                                  <FormGroup>
+
+                                <Col >
+
+                                  <FormGroup check
+                                    inline>
                                     <input
                                       className="form-check-input"
 
@@ -1054,18 +1056,24 @@ const AddProductForm = (props) => {
                                       value={formik.values.BuyAsCase}
                                       checked={formik.values.BuyAsCase}
                                     />
-                                    <label
-                                      className="form-check-label text-dark ms-3 mt-1 "
+                                    <Label
+                                      className="form-check-label 
+                                      text-dark ms-3 mt-1 "
 
                                       htmlFor="BuyAsCase"
                                     >
                                       Buy as Case
-                                    </label>
+                                    </Label>
                                   </FormGroup>
+
                                 </Col>
+
                               </Row>
+
                               <Row>
-                                <Col md="4">
+                                <Col  >
+
+                                <Row>
                                   <div className="mb-0">
                                     <label
                                       htmlFor="UnitInCase"
@@ -1089,35 +1097,14 @@ const AddProductForm = (props) => {
                                       />
                                     </div>
                                   </div>
-                                </Col>
-                                <Col md="4">
-                                  <div className="mb-0">
-                                    <label
-                                      htmlFor="CaseCost"
-                                      className="form-label"
-                                    >
-                                      Case Cost
-                                    </label>
-                                    <div className="input-group">
-                                      <Cleave
 
-                                        options={{
-                                          numeral: true,
-                                          numeralThousandsGroupStyle: "ten",
-                                        }}
-                                        value={casecost}
-                                        onChange={(e) => onCaseCostChange(e)}
-                                        className="form-control text-end"
-                                        keyboardType="decimal-pad"
-                                        id="CaseCost"
-                                        name="Ca"
-                                        disabled={!formik.values.BuyAsCase}
-                                      />
-                                      <span className="input-group-text">$</span>
-                                    </div>
-                                  </div>
+                                  </Row>
                                 </Col>
-                                <Col md="4">
+                              </Row>
+
+                              <Row>
+
+                                <Col >
                                   <div className="mb-0">
                                     <label
                                       htmlFor="CasePrice"
@@ -1146,10 +1133,44 @@ const AddProductForm = (props) => {
                                     </div>
                                   </div>
                                 </Col>
+
                               </Row>
                               <Row>
-                                <Col md="5">
-                                  <h6 className="mt-2">UPC</h6>
+                              <Col >
+                                <div className="mb-0">
+                                  <label
+                                    htmlFor="CaseCost"
+                                    className="form-label"
+                                  >
+                                    Case Cost
+                                  </label>
+                                  <div className="input-group">
+                                    <Cleave
+
+                                      options={{
+                                        numeral: true,
+                                        numeralThousandsGroupStyle: "ten",
+                                      }}
+                                      value={casecost}
+                                      onChange={(e) => onCaseCostChange(e)}
+                                      className="form-control text-end"
+                                      keyboardType="decimal-pad"
+                                      id="CaseCost"
+                                      name="Ca"
+                                      disabled={!formik.values.BuyAsCase}
+                                    />
+                                    <span className="input-group-text">$</span>
+                                  </div>
+                                </div>
+                              </Col>
+                              </Row>
+                            </Col>
+
+                            <Col md="4">
+
+                              <Row>
+                                <h6 className="mt-2">UPC</h6>
+                                <Col md="6">
                                   <div
                                     className="container p-1"
                                     style={{
@@ -1182,18 +1203,29 @@ const AddProductForm = (props) => {
                                       );
                                     })}
                                   </div>
-                                  <Row>
+                                </Col>
+
+                                <Col md="3">
+
+                                  <Row className="mb-2">
+
                                     <button
-                                      className="btn col custom-Green ms-3 me-1 px-0 mt-2"
+                                      className=
+                                      "btn col custom-Green"
                                       type="button"
                                       data-bs-toggle="modal"
                                       data-bs-target="#newUPCmodal"
                                     >
                                       Add New
                                     </button>
+
+                                  </Row>
+
+                                  <Row>
+
                                     <button
                                       type="button"
-                                      className="btn col edit-btn px-0 me-3 ms-1 mt-2"
+                                      className="btn col edit-btn"
                                       disabled={barcodeData?.length >= 1}
                                       onClick={() => {
                                         setBarcodeData((oldData) => [
@@ -1207,9 +1239,13 @@ const AddProductForm = (props) => {
                                     >
                                       Auto
                                     </button>
+
                                   </Row>
                                 </Col>
-                                <Col md="7">
+                              </Row>
+
+                              <Row>
+                                <Col md="10">
                                   <div className="mt-4">
                                     <div
                                       style={{
@@ -1251,21 +1287,22 @@ const AddProductForm = (props) => {
                                     </div>
                                   </div>
                                 </Col>
+
                               </Row>
                             </Col>
+
+                            <Col md="2">
+
+                            </Col>
+                            
                           </Row>
 
-                          {/* <StockComponent
-                          setnStockData={setnStockData}
-                          stockData={stockData}
-                          nStockData={nStockData}
-                          setStockData={setStockData}
-                          setUpdatedStockData={setUpdatedStockData}
-                          updatedStockData={updatedStockData}
-                        /> */}
+
+
+
                           <Row className="mt-2">
                             <Col>
-                              <FormGroup>
+                              <FormGroup  >
                                 <input
                                   className="form-check-input"
 
