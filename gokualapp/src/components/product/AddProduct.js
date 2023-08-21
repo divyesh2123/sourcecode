@@ -324,10 +324,10 @@ const AddProductForm = (props) => {
                           </label>
                           <Input
                             name="UPC"
-                            // placeholder="UPC"
+                         
                             type="number"
                             className="form-control"
-                            // style={{ background: "#f5f5dc" }}
+                           
                             id="UPC"
                             onKeyDown={handleKeyDown}
                             onChange={formik.handleChange}
@@ -349,7 +349,7 @@ const AddProductForm = (props) => {
                           </label>
                           <Input
                             name="name"
-                            // placeholder="Name"
+                           
                             type="text"
                             className="form-control"
                             style={{ background: "#f5f5dc" }}
@@ -385,15 +385,13 @@ const AddProductForm = (props) => {
                             Add New
                           </a>
 
-                          {/* <AddDepartmentInfo {...props} tag={true} /> */}
-                          {/* <EditDepartMent {...props} tag={true} /> */}
+                         
                           <Select
                             value={formik.values.department}
                             onBlur={formik.handleBlur}
                             onChange={(e) => {
-                              console.log("e: ", e);
-                              handleDepartmentChange(e);
-                              // formik.handleChange("department1");
+                             
+                            
                             }}
                             options={departmentDropDownList?.DepartmentDdState?.listResult ?? []}
                             id="department1"
@@ -417,15 +415,7 @@ const AddProductForm = (props) => {
                             Add New
                           </a>
 
-                          {/* <a
-                          //href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#addCategoryModal1"
-                          className="custom-float-right"
-                        >
-                          Add
-                        </a> */}
-                          {/* <ManageCategory /> */}
+                         
 
                           <Select
                             value={formik.values.category}
@@ -457,14 +447,7 @@ const AddProductForm = (props) => {
                             Add New
                           </a>
 
-                          {/* <a
-                          href="#"
-                          data-bs-toggle="modal"
-                          data-bs-target="#addCategoryModal1"
-                          className="custom-float-right"
-                        >
-                          Add
-                        </a> */}
+                          
 
                           <Select
                             value={formik.values.subcategory}
@@ -757,7 +740,7 @@ const AddProductForm = (props) => {
 
                     </Row>
                   </div>
-                  {/* //teb open Code */}
+                 
                   <div
                     className="container p-0 m-0"
                     style={{ minWidth: "100%", background: "#fff" }}
